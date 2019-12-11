@@ -24,7 +24,7 @@ class FilterTypeGuesserTest extends TestCase
     private $modelManager;
     private $metadata;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->guesser = new FilterTypeGuesser();
         $this->modelManager = $this->prophesize(ModelManager::class);

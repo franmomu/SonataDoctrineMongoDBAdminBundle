@@ -49,7 +49,7 @@ class ListBuilderTest extends TestCase
      */
     protected $modelManager;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->typeGuesser = $this->prophesize(TypeGuesserInterface::class);
 

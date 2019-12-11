@@ -42,7 +42,7 @@ class FormContractorTest extends TestCase
      */
     private $formContractor;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->formFactory = $this->createMock(FormFactoryInterface::class);
 
