@@ -30,12 +30,12 @@
         "doctrine/mongodb-odm-bundle": "^3.0 || ^4.0",
         "sonata-project/admin-bundle": "^3.31",
         "sonata-project/core-bundle": "^3.17",
-        "symfony/config": "^3.4 || ^4.2",
-        "symfony/dependency-injection": "^3.4 || ^4.2",
-        "symfony/doctrine-bridge": "^3.4 || ^4.2",
-        "symfony/form": "^3.4 || ^4.2",
-        "symfony/http-kernel": "^3.4 || ^4.2",
-        "symfony/twig-bundle": "^4.3"
+        "symfony/config": "^3.4 || ^4.2 || ^5.0",
+        "symfony/dependency-injection": "^3.4 || ^4.2 || ^5.0",
+        "symfony/doctrine-bridge": "^3.4 || ^4.2 || ^5.0",
+        "symfony/form": "^3.4 || ^4.2 || ^5.0",
+        "symfony/http-kernel": "^3.4 || ^4.2 || ^5.0",
+        "symfony/twig-bundle": "^4.3 || ^5.0"
     },
     "provide": {
         "sonata-project/admin-bundle-persistency-layer": "1.0.0"
