@@ -12,5 +12,3 @@ parameters:
 
     autoload_files:
         - vendor/autoload.php
-    stubFiles:
-        - vendor/jetbrains/phpstorm-stubs/mongodb/mongodb.php
