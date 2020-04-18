@@ -1,0 +1,24 @@
+on: [push, pull_request]
+name: Quality assurance
+jobs:
+    phpstan-manual:
+        name: PHPStan Manual
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: shivammathur/setup-php@v2
+              with:
+                  php-version: '7.4'
+
+            - run: |
+                  composer require phpstan/phpstan ^0.12.18 --no-update
+                  composer require phpstan/extension-installer --no-update
+                  composer require phpstan/phpstan-doctrine --no-update
+                  composer require phpstan/phpstan-phpunit --no-update
+                  composer require phpstan/phpstan-nette --no-update
+                  composer require phpstan/phpstan-symfony --no-update
+                  composer require phpstan/phpstan-mockery --no-update
+                  composer require phpstan/phpstan-webmozart-assert --no-update
+            - run: composer install --no-scripts --no-progress
+            - run: vendor/bin/phpstan analyse
+
