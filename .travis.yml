@@ -6,6 +6,7 @@ branches:
   only:
     - master
     - 3.x
+    - add_mongo_travis
 
 language: php
 
