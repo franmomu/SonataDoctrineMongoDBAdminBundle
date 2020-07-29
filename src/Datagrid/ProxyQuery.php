@@ -47,6 +47,14 @@ class ProxyQuery implements ProxyQueryInterface
      */
     public function execute(array $params = [], $hydrationMode = null)
     {
+        if ([] !== $params) {
+            @trigger_error(sprintf(
+                'Passing a value different than an empty array as argument 1 for "%s()" does not have any effect.'
+                .' The values provided in this array are not used.',
+                __METHOD__
+            ), E_USER_WARNING);
+        }
+
         // always clone the original queryBuilder.
         $queryBuilder = clone $this->queryBuilder;
 
@@ -56,7 +64,7 @@ class ProxyQuery implements ProxyQueryInterface
             $queryBuilder->sort($sortBy, $this->getSortOrder());
         }
 
-        return $queryBuilder->getQuery()->execute($params, $hydrationMode);
+        return $queryBuilder->getQuery()->execute();
     }
 
     public function setSortBy($parentAssociationMappings, $fieldMapping)
