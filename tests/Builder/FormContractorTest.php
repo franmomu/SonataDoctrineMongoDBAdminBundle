@@ -123,7 +123,6 @@ class FormContractorTest extends AbstractBuilderTestCase
     {
         // Given
         $modelManager = $this->createMock(ModelManager::class);
-        $modelManager->method('hasMetadata')->willReturn(false);
 
         $admin = $this->createMock(AdminInterface::class);
         $admin->method('getModelManager')->willReturn($modelManager);
@@ -152,8 +151,6 @@ class FormContractorTest extends AbstractBuilderTestCase
         $classMetadata = $this->getMetadataForDocumentWithAnnotations(DocumentWithReferences::class);
 
         $modelManager = $this->createMock(ModelManager::class);
-        $modelManager->method('hasMetadata')->willReturn(true);
-        $modelManager->method('getMetadata')->willReturn($classMetadata);
 
         $admin = $this->createMock(AdminInterface::class);
         $admin->method('getModelManager')->willReturn($modelManager);
@@ -173,8 +170,6 @@ class FormContractorTest extends AbstractBuilderTestCase
         $classMetadata = $this->getMetadataForDocumentWithAnnotations(DocumentWithReferences::class);
 
         $modelManager = $this->createMock(ModelManager::class);
-        $modelManager->method('hasMetadata')->willReturn(true);
-        $modelManager->method('getMetadata')->willReturn($classMetadata);
 
         $admin = $this->createMock(AdminInterface::class);
         $admin->method('getModelManager')->willReturn($modelManager);

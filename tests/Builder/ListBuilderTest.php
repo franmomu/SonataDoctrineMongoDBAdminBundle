@@ -56,7 +56,6 @@ class ListBuilderTest extends AbstractBuilderTestCase
         $this->typeGuesser = $this->prophesize(TypeGuesserInterface::class);
 
         $this->modelManager = $this->prophesize(ModelManager::class);
-        $this->modelManager->hasMetadata(Argument::any())->willReturn(false);
 
         $this->admin = $this->prophesize(AbstractAdmin::class);
         $this->admin->getClass()->willReturn('Foo');
@@ -110,15 +109,11 @@ class ListBuilderTest extends AbstractBuilderTestCase
     public function testFixFieldDescriptionWithFieldMapping(): void
     {
         $classMetadata = $this->getMetadataForDocumentWithAnnotations(DocumentWithReferences::class);
-        $this->modelManager->hasMetadata(Argument::any())->willReturn(true);
         $fieldDescription = new FieldDescription();
         $fieldDescription->setName('name');
         $fieldDescription->setOption('sortable', true);
         $fieldDescription->setType('string');
         $fieldDescription->setFieldMapping($classMetadata->fieldMappings['name']);
-
-        $this->modelManager->getParentMetadataForProperty(Argument::cetera())
-            ->willReturn([$classMetadata, 'name', $parentAssociationMapping = []]);
 
         $this->listBuilder->fixFieldDescription($this->admin->reveal(), $fieldDescription);
 
@@ -132,7 +127,6 @@ class ListBuilderTest extends AbstractBuilderTestCase
     public function testFixFieldDescriptionWithAssociationMapping(string $type, string $template): void
     {
         $classMetadata = $this->getMetadataForDocumentWithAnnotations(DocumentWithReferences::class);
-        $this->modelManager->hasMetadata(Argument::any())->willReturn(true);
         $fieldDescription = new FieldDescription();
         $fieldDescription->setName('associatedDocument');
         $fieldDescription->setOption('sortable', true);
@@ -142,9 +136,6 @@ class ListBuilderTest extends AbstractBuilderTestCase
         $fieldDescription->setAssociationMapping($classMetadata->associationMappings['associatedDocument']);
 
         $this->admin->attachAdminClass(Argument::any())->shouldBeCalledTimes(1);
-
-        $this->modelManager->getParentMetadataForProperty(Argument::cetera())
-            ->willReturn([$classMetadata, 'associatedDocument', $parentAssociationMapping = []]);
 
         $this->listBuilder->fixFieldDescription($this->admin->reveal(), $fieldDescription);
 
@@ -171,7 +162,6 @@ class ListBuilderTest extends AbstractBuilderTestCase
      */
     public function testFixFieldDescriptionFixesType(string $expectedType, string $type): void
     {
-        $this->modelManager->hasMetadata(Argument::any())->willReturn(false);
         $fieldDescription = new FieldDescription();
         $fieldDescription->setName('test');
         $fieldDescription->setType($type);

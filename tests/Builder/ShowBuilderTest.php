@@ -87,8 +87,6 @@ final class ShowBuilderTest extends AbstractBuilderTestCase
 
         $this->guesser->method('guessType')->willReturn($typeGuess);
 
-        $this->modelManager->method('hasMetadata')->willReturn(false);
-
         $this->showBuilder->addField(
             new FieldDescriptionCollection(),
             null,
@@ -105,8 +103,6 @@ final class ShowBuilderTest extends AbstractBuilderTestCase
         $fieldDescription->setName('FakeName');
 
         $this->admin->expects($this->once())->method('addShowFieldDescription');
-
-        $this->modelManager->method('hasMetadata')->willReturn(false);
 
         $this->showBuilder->addField(
             new FieldDescriptionCollection(),
@@ -132,11 +128,6 @@ final class ShowBuilderTest extends AbstractBuilderTestCase
         $fieldDescription->setFieldMapping($classMetadata->fieldMappings['name']);
 
         $this->admin->expects($this->once())->method('attachAdminClass');
-
-        $this->modelManager->method('hasMetadata')->willReturn(true);
-
-        $this->modelManager->method('getParentMetadataForProperty')
-            ->willReturn([$classMetadata, 'name', $parentAssociationMapping = []]);
 
         $this->showBuilder->fixFieldDescription($this->admin, $fieldDescription);
 
