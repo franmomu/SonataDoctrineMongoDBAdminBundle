@@ -32,9 +32,6 @@ class ListBuilder implements ListBuilderInterface
         $this->templates = $templates;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getBaseList(array $options = [])
     {
         return new FieldDescriptionCollection();
