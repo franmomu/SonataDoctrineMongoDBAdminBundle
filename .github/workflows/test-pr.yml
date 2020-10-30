@@ -1,0 +1,14 @@
+name: How to test a PR
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  composer-test-pr:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Composer Test PR
+      uses: franmomu/composer-test-pr@master
+        env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
