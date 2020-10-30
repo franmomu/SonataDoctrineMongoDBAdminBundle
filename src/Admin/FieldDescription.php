@@ -25,9 +25,6 @@ class FieldDescription extends BaseFieldDescription
         $this->parentAssociationMappings = [];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setAssociationMapping($associationMapping)
     {
         if (!\is_array($associationMapping)) {
