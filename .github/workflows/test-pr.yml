@@ -10,5 +10,5 @@ jobs:
     steps:
     - name: Composer Test PR
       uses: franmomu/composer-test-pr@master
-        env:
+      env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
