@@ -33,11 +33,7 @@ class DatagridBuilder implements DatagridBuilderInterface
 
     protected $guesser;
 
-    /**
-     * Indicates that csrf protection enabled.
-     *
-     * @var bool
-     */
+
     protected $csrfTokenEnabled;
 
     /**
