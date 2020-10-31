@@ -26,11 +26,7 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  */
 class Configuration implements ConfigurationInterface
 {
-    /**
-     * Generates the configuration tree.
-     *
-     * @return \Symfony\Component\Config\Definition\Builder\TreeBuilder
-     */
+
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder('sonata_doctrine_mongo_db_admin');
