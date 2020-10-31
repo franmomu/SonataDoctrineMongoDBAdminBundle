@@ -42,9 +42,6 @@ class ProxyQuery implements ProxyQueryInterface
         $this->queryBuilder = clone $this->queryBuilder;
     }
 
-    /**
-     * @return mixed
-     */
     public function execute(array $params = [], $hydrationMode = null)
     {
         // always clone the original queryBuilder.
