@@ -26,14 +26,12 @@ class SonataDoctrineMongoDBAdminBundleTest extends TestCase
         $containerBuilder = $this->createMock(ContainerBuilder::class);
 
         $containerBuilder
-            ->expects($this->at(0))
             ->method('addCompilerPass')
-            ->with($this->isInstanceOf(AddGuesserCompilerPass::class));
-
-        $containerBuilder
-            ->expects($this->at(1))
-            ->method('addCompilerPass')
-            ->with($this->isInstanceOf(AddTemplatesCompilerPass::class));
+            ->withConsecutive(
+                [$this->isInstanceOf(AddGuesserCompilerPass::class)],
+                [$this->isInstanceOf(AddTemplatesCompilerPass::class)]
+            )
+            ;
 
         $bundle = new SonataDoctrineMongoDBAdminBundle();
         $bundle->build($containerBuilder);
