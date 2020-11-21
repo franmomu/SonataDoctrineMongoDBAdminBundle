@@ -36,12 +36,12 @@ class FilterTest_Filter extends Filter
         $queryBuilder->field($field)->equals($value);
     }
 
-    public function getDefaultOptions()
+    public function getDefaultOptions(): array
     {
         return ['option1' => 2];
     }
 
-    public function getRenderSettings()
+    public function getRenderSettings(): array
     {
         return ['sonata_type_filter_default', [
             'type' => $this->getFieldType(),
@@ -80,8 +80,7 @@ class FilterTest extends TestCase
 
     public function testExceptionOnEmptyFieldName(): void
     {
-        // NEXT_MAJOR: Replace \RuntimeException with \LoginException.
-        $this->expectException(\RuntimeException::class);
+        $this->expectException(\LogicException::class);
 
         $filter = new FilterTest_Filter();
         $filter->getFieldName();

@@ -83,7 +83,7 @@ class FieldDescription extends BaseFieldDescription
         $this->parentAssociationMappings = $parentAssociationMappings;
     }
 
-    public function isIdentifier()
+    public function isIdentifier(): bool
     {
         return $this->fieldMapping['id'] ?? false;
     }

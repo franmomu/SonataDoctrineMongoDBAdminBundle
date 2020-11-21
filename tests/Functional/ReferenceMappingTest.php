@@ -27,7 +27,7 @@ final class ReferenceMappingTest extends BasePantherTestCase
         $client = static::createFirefoxClient();
 
         $crawler = $client->request(Request::METHOD_GET, '/admin/tests/app/book/create');
-
+        $client->takeScreenshot('screen.png');
         $attributeId = $crawler->filter('.book_id')->attr('name');
         $attributeName = $crawler->filter('.book_name')->attr('name');
 

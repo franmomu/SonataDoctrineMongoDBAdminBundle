@@ -30,7 +30,7 @@ class ModelFilter extends Filter
     /**
      * NEXT_MAJOR: Remove $alias parameter.
      */
-    public function filter(ProxyQueryInterface $queryBuilder, $alias, $field, $value): void
+    public function filter(ProxyQueryInterface $queryBuilder, string $alias, string $field, $value): void
     {
         if (!$value || !\is_array($value) || !\array_key_exists('value', $value)) {
             return;
@@ -51,12 +51,10 @@ class ModelFilter extends Filter
         }
     }
 
-    public function getDefaultOptions()
+    public function getDefaultOptions(): array
     {
         return [
             'mapping_type' => false,
-            // NEXT_MAJOR: Remove this line.
-            'field_name' => false,
             'field_type' => DocumentType::class,
             'field_options' => [],
             'operator_type' => EqualOperatorType::class,
@@ -64,7 +62,7 @@ class ModelFilter extends Filter
         ];
     }
 
-    public function getRenderSettings()
+    public function getRenderSettings(): array
     {
         return [DefaultType::class, [
             'field_type' => $this->getFieldType(),

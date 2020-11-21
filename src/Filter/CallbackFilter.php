@@ -26,7 +26,7 @@ class CallbackFilter extends Filter
     /**
      * NEXT_MAJOR: Remove $alias parameter.
      */
-    public function filter(ProxyQueryInterface $queryBuilder, $alias, $field, $value): void
+    public function filter(ProxyQueryInterface $queryBuilder, string $alias, string $field, $value): void
     {
         if (!\is_callable($this->getOption('callback'))) {
             throw new \RuntimeException(sprintf(
@@ -47,7 +47,7 @@ class CallbackFilter extends Filter
         $this->active = true;
     }
 
-    public function getDefaultOptions()
+    public function getDefaultOptions(): array
     {
         return [
             'callback' => null,
@@ -60,7 +60,7 @@ class CallbackFilter extends Filter
         ];
     }
 
-    public function getRenderSettings()
+    public function getRenderSettings(): array
     {
         return [DefaultType::class, [
                 'field_type' => $this->getFieldType(),

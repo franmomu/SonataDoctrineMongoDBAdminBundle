@@ -33,7 +33,7 @@ class NumberFilter extends Filter
     /**
      * NEXT_MAJOR: Remove $alias parameter.
      */
-    public function filter(ProxyQueryInterface $queryBuilder, $alias, $field, $value): void
+    public function filter(ProxyQueryInterface $queryBuilder, string $alias, string $field, $value): void
     {
         if (!$value || !\is_array($value) || !\array_key_exists('value', $value) || !is_numeric($value['value'])) {
             return;
@@ -47,12 +47,12 @@ class NumberFilter extends Filter
         $this->active = true;
     }
 
-    public function getDefaultOptions()
+    public function getDefaultOptions(): array
     {
         return [];
     }
 
-    public function getRenderSettings()
+    public function getRenderSettings(): array
     {
         return [NumberType::class, [
             'field_type' => $this->getFieldType(),
