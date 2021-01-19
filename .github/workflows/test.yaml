@@ -86,6 +86,9 @@ jobs:
                   dependency-versions: "${{ matrix.dependencies }}"
                   composer-options: "--prefer-dist --prefer-stable"
 
+            - name: Detect drivers
+              run: vendor/bin/bdi detect drivers
+
             - name: Run Tests
               run: make test
 
