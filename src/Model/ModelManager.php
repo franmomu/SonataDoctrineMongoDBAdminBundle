@@ -69,6 +69,11 @@ class ModelManager implements ModelManagerInterface
         $this->propertyAccessor = $propertyAccessor;
     }
 
+    public function __call($name, $arguments)
+    {
+        // TODO: Implement @method void reverseTransform(object $object, array $array = [])
+    }
+
     /**
      * NEXT_MAJOR: Change visibility to private.
      *
@@ -93,6 +98,8 @@ class ModelManager implements ModelManagerInterface
     }
 
     /**
+     * @deprecated since sonata-project/doctrine-mongodb-admin-bundle 3.x and will be removed in version 4.0
+     *
      * Returns the model's metadata holding the fully qualified property, and the last
      * property name.
      *
@@ -110,6 +117,14 @@ class ModelManager implements ModelManagerInterface
      */
     public function getParentMetadataForProperty($baseClass, $propertyFullName)
     {
+        if ('sonata_deprecation_mute' !== (\func_get_args()[2] ?? null)) {
+            @trigger_error(sprintf(
+                'The "%s()" method is deprecated since sonata-project/doctrine-mongodb-admin-bundle 3.x and'
+                .' will be removed in version 4.0.',
+                __METHOD__
+            ), \E_USER_DEPRECATED);
+        }
+
         $nameElements = explode('.', $propertyFullName);
         $lastPropertyName = array_pop($nameElements);
         $class = $baseClass;
@@ -148,9 +163,19 @@ class ModelManager implements ModelManagerInterface
 
     /**
      * @psalm-suppress InvalidArgument
+     *
+     * @deprecated since sonata-project/doctrine-mongodb-admin-bundle 3.x and will be removed in version 4.0
      */
     public function getNewFieldDescriptionInstance($class, $name, array $options = [])
     {
+        if ('sonata_deprecation_mute' !== (\func_get_args()[1] ?? null)) {
+            @trigger_error(sprintf(
+                'The "%s()" method is deprecated since sonata-project/doctrine-mongodb-admin-bundle 3.x and'
+                .' will be removed in version 4.0.',
+                __METHOD__
+            ), \E_USER_DEPRECATED);
+        }
+
         if (!\is_string($name)) {
             throw new \RuntimeException('The name argument must be a string');
         }
@@ -170,7 +195,8 @@ class ModelManager implements ModelManagerInterface
             $options,
             $metadata->fieldMappings[$propertyName] ?? [],
             $metadata->associationMappings[$propertyName] ?? [],
-            $parentAssociationMappings
+            $parentAssociationMappings,
+            $propertyName
         );
     }
 
