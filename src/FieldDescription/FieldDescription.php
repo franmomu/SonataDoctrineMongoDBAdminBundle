@@ -16,6 +16,7 @@ namespace Sonata\DoctrineMongoDBAdminBundle\FieldDescription;
 use Doctrine\ODM\MongoDB\Mapping\ClassMetadata;
 use Sonata\AdminBundle\FieldDescription\BaseFieldDescription;
 
+
 final class FieldDescription extends BaseFieldDescription
 {
     public function getTargetModel(): ?string
@@ -63,7 +64,7 @@ final class FieldDescription extends BaseFieldDescription
     {
         $this->associationMapping = $associationMapping;
 
-        $this->mappingType = $this->mappingType ?: $associationMapping['type'];
+        $this->mappingType = $this->mappingType ?? $associationMapping['type'];
         $this->fieldName = $associationMapping['fieldName'];
     }
 
@@ -71,8 +72,8 @@ final class FieldDescription extends BaseFieldDescription
     {
         $this->fieldMapping = $fieldMapping;
 
-        $this->mappingType = $this->mappingType ?: $fieldMapping['type'];
-        $this->fieldName = $this->fieldName ?: $fieldMapping['fieldName'];
+        $this->mappingType = $this->mappingType ?? $fieldMapping['type'];
+        $this->fieldName = $this->fieldName ?? $fieldMapping['fieldName'];
     }
 
     /**
